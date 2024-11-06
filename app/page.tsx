@@ -63,7 +63,7 @@ export default function Home() {
         <section className="space-y-6 mb-12 flex flex-col items-center text-center max-w-2xl mx-auto">
           <div className="space-y-4">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">
-            👋Hi, I&apos;m <span className="name-highlight">Damburudhar</span>
+            👋 Hi, I&apos;m <span className="name-highlight">Damburudhar</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               A <span className="highlight-1">no-code</span> developer 
