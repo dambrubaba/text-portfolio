@@ -63,13 +63,13 @@ export default function Home() {
         <section className="space-y-6 mb-12 flex flex-col items-center text-center max-w-2xl mx-auto">
           <div className="space-y-4">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">
-              Hi, I&apos;m <span className="name-highlight">Damburudhar</span>
+            👋Hi, I&apos;m <span className="name-highlight">Damburudhar</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               A <span className="highlight-1">no-code</span> developer 
               <span className="highlight-2"> passionate</span> about 
               <span className="highlight-3"> building</span> 
-              <span className="highlight-4"> innovative</span> apps using free tools.
+              <span className="highlight-4"> innovative</span> apps mostly using free tools. Very active on Twitter.
             </p>
           </div>
 
@@ -109,7 +109,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <section className="space-y-6 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Apps</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Check out my latest work</h2>
             <div className="flex flex-wrap gap-3 justify-center">
               {displayedApps.map((app) => (
                 <Link 
@@ -137,7 +137,7 @@ export default function Home() {
           </section>
 
           <section className="space-y-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground text-center">Blog</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground text-center">My Blogs</h2>
             <div className="grid gap-6 max-w-md mx-auto">
               {posts.map((post) => (
                 <Link 
