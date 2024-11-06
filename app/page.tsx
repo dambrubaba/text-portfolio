@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { Mail, Github, Twitter, Instagram, ChevronDown, ChevronUp, Coffee } from 'lucide-react';
 import { Inter } from 'next/font/google';
+import { AppSlideshow } from '@/components/AppSlideshow';
 
 const interBlack = Inter({ 
   subsets: ['latin'],
@@ -114,21 +115,9 @@ export default function Home() {
         </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <section className="space-y-6 text-center">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Check out my latest work</h2>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {displayedApps.map((app) => (
-                <Link 
-                  key={app.name}
-                  href={app.url}
-                  target="_blank"
-                  className="app-tag group text-foreground hover:text-primary"
-                >
-                  <span>{app.name}</span>
-                  <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                </Link>
-              ))}
-            </div>
+          <section className="space-y-6">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground text-center">Featured Projects</h2>
+            <AppSlideshow />
             <Button
               variant="ghost"
               onClick={() => setShowAllApps(!showAllApps)}
