@@ -6,6 +6,10 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ['latin'] });
+const interBlack = Inter({ 
+  subsets: ['latin'],
+  weight: ['900'] // Using black weight
+});
 
 export const metadata: Metadata = {
   title: 'Damburudhar - No-Code Developer',

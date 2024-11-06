@@ -5,6 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { Mail, Github, Twitter, Instagram, ChevronDown, ChevronUp, Coffee } from 'lucide-react';
+import { Inter } from 'next/font/google';
+
+const interBlack = Inter({ 
+  subsets: ['latin'],
+  weight: ['900']
+});
 
 export default function Home() {
   const [showAllApps, setShowAllApps] = useState(false);
@@ -63,13 +69,13 @@ export default function Home() {
         <section className="space-y-6 mb-12 flex flex-col items-center text-center max-w-2xl mx-auto">
           <div className="space-y-4">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">
-              <span className="wave">👋</span> Hi, I&apos;m <span className="name-highlight">Damburudhar</span>
+              <span className="wave">👋</span> Hi, I&apos;m <span className={`name-highlight ${interBlack.className}`}>Damburudhar</span>
             </h1>
             <p className="text-xl text-muted-foreground">
               A <span className="highlight-1">no-code</span> developer 
               <span className="highlight-2"> passionate</span> about 
               <span className="highlight-3"> building</span> 
-              <span className="highlight-4"> innovative</span> apps mostly using free tools. Very active on Twitter.
+              <span className="highlight-4"> useful</span> apps mostly using free tools. Very active on Twitter.
             </p>
           </div>
 
