@@ -119,6 +119,26 @@ export default function Home() {
           <section className="space-y-6">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground text-center">Featured Apps</h2>
             <AppSlideshow />
+            
+            {showAllApps && (
+              <div className="mt-6">
+                <h3 className="text-lg font-medium mb-4 text-foreground text-center">All Apps</h3>
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {allApps.map((app) => (
+                    <Link 
+                      key={app.name}
+                      href={app.url}
+                      target="_blank"
+                      className="app-tag group text-foreground hover:text-primary"
+                    >
+                      <span>{app.name}</span>
+                      <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <Button
               variant="ghost"
               onClick={() => setShowAllApps(!showAllApps)}
