@@ -17,7 +17,8 @@ export function AppSlideshow() {
       description: 'A modern directory template for AI agents and tools',
       image: '/directory-boilerplate.png',
       tech: ['Next.js', 'TypeScript', 'Tailwind'],
-      github: 'https://github.com/dambrubaba/directory-boilerplate'
+      github: 'https://github.com/dambrubaba/directory-boilerplate',
+      showGithub: true
     },
     {
       name: 'ScreenPost',
@@ -25,7 +26,7 @@ export function AppSlideshow() {
       description: 'Create beautiful screenshots for social media',
       image: '/screenpost.png',
       tech: ['React', 'Lucide', 'Tailwind'],
-      github: 'https://github.com/dambrubaba/Snap-post'
+      showGithub: false
     },
     {
       name: 'PrankPe',
@@ -33,7 +34,7 @@ export function AppSlideshow() {
       description: 'Generate fun prank payment screenshots',
       image: '/prankpe.png',
       tech: ['Next.js', 'TypeScript', 'Shadcn UI'],
-      github: 'https://github.com/dambrubaba/prankpay'
+      showGithub: false
     },
     {
       name: 'Aum Meditation',
@@ -41,7 +42,7 @@ export function AppSlideshow() {
       description: 'A peaceful meditation and mindfulness app',
       image: '/aum-meditation.png',
       tech: ['React', 'Next.js', 'Tailwind', 'Shadcn UI'],
-      github: 'https://github.com/dambrubaba/aum-meditation'
+      showGithub: false
     },
   ];
 
@@ -106,12 +107,14 @@ export function AppSlideshow() {
                           Visit Site
                         </Link>
                       </Button>
-                      <Button variant="outline" size="sm" asChild>
-                        <Link href={apps[currentIndex].github} target="_blank">
-                          <Github className="w-3 h-3 mr-1" />
-                          Code
-                        </Link>
-                      </Button>
+                      {apps[currentIndex].showGithub && apps[currentIndex].github && (
+                        <Button variant="outline" size="sm" asChild>
+                          <Link href={apps[currentIndex].github} target="_blank">
+                            <Github className="w-3 h-3 mr-1" />
+                            Code
+                          </Link>
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
