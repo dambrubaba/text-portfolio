@@ -30,6 +30,8 @@
     --highlight-2: 330 81% 60%;
     --highlight-3: 221 83% 53%;
     --highlight-4: 43 96% 58%;
+
+    --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   }
 
   .dark {
@@ -67,6 +69,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
   }
 }
 

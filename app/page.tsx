@@ -137,8 +137,8 @@ export default function Home() {
           </section>
 
           <section className="space-y-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Blog</h2>
-            <div className="grid gap-6">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground text-center">Blog</h2>
+            <div className="grid gap-6 max-w-md mx-auto">
               {posts.map((post) => (
                 <Link 
                   key={post.slug}
@@ -146,13 +146,13 @@ export default function Home() {
                   className="block group"
                 >
                   <Card className="transition-all duration-300 hover:shadow-md overflow-hidden">
-                    <CardHeader className="py-4">
+                    <CardHeader className="py-2 px-4">
                       <CardTitle className="transition-colors group-hover:text-primary text-lg text-foreground">
                         {post.title}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="py-2">
-                      <div className="space-y-3">
+                    <CardContent className="py-2 px-4">
+                      <div className="space-y-2">
                         <p className="text-xs text-muted-foreground">
                           {new Date(post.date).toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -161,7 +161,7 @@ export default function Home() {
                           })}
                         </p>
                         <div className="transform-gpu transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[200px] group-hover:opacity-100">
-                          <p className="text-sm text-muted-foreground mb-3">{post.excerpt}</p>
+                          <p className="text-sm text-muted-foreground mb-2">{post.excerpt}</p>
                           <div className="flex flex-wrap gap-2">
                             {post.keywords.map((keyword) => (
                               <span key={keyword} className="app-tag text-xs text-foreground">
