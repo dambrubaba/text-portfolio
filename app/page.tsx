@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
@@ -15,6 +15,7 @@ const interBlack = Inter({
 
 export default function Home() {
   const [showAllApps, setShowAllApps] = useState(false);
+  const appsContainerRef = useRef<HTMLDivElement>(null);
 
   const featuredApps = [
     { name: 'Directory Boilerplate', url: 'https://directory-boilerplate-ai-agents.vercel.app/' },
@@ -63,6 +64,47 @@ export default function Home() {
   ];
 
   const displayedApps = showAllApps ? allApps : featuredApps;
+
+  const scatterApps = () => {
+    const container = appsContainerRef.current;
+    if (!container) return;
+
+    const apps = container.getElementsByClassName('scattered-app');
+    const containerRect = container.getBoundingClientRect();
+    const width = containerRect.width;
+    
+    // Grid layout
+    const columns = 4;
+    const rows = Math.ceil(apps.length / columns);
+    const cellWidth = width / columns;
+    const cellHeight = 60; // Fixed height for each row
+
+    Array.from(apps).forEach((app, index) => {
+      const element = app as HTMLElement;
+      
+      // Calculate grid position
+      const row = Math.floor(index / columns);
+      const col = index % columns;
+      
+      // Calculate position
+      const x = (col * cellWidth) + (cellWidth / 2) - width / 2;
+      const y = (row * cellHeight) - 150; // Start higher up
+      
+      // Very slight rotation
+      const rotation = (Math.random() - 0.5) * 5;
+
+      element.style.setProperty('--x', `${x}px`);
+      element.style.setProperty('--y', `${y}px`);
+      element.style.setProperty('--rotation', `${rotation}deg`);
+      element.style.animationDelay = `${index * 0.05}s`; // Note: Fixed the syntax error here
+    });
+  };
+
+  useEffect(() => {
+    if (showAllApps) {
+      scatterApps();
+    }
+  }, [showAllApps]);
 
   return (
     <div className="flex justify-center">
@@ -123,13 +165,19 @@ export default function Home() {
             {showAllApps && (
               <div className="mt-6">
                 <h3 className="text-lg font-medium mb-4 text-foreground text-center">All Apps</h3>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  {allApps.map((app) => (
+                <div 
+                  ref={appsContainerRef}
+                  className="grid-apps-container"
+                >
+                  {allApps.map((app, index) => (
                     <Link 
                       key={app.name}
                       href={app.url}
                       target="_blank"
-                      className="app-tag group text-foreground hover:text-primary"
+                      className="grid-app app-tag group text-foreground hover:text-primary"
+                      style={{
+                        animationDelay: `${index * 0.1}s`
+                      }}
                     >
                       <span>{app.name}</span>
                       <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
@@ -142,7 +190,7 @@ export default function Home() {
             <Button
               variant="ghost"
               onClick={() => setShowAllApps(!showAllApps)}
-              className="flex items-center gap-2 mx-auto text-foreground"
+              className="flex items-center gap-2 mx-auto text-foreground relative z-10"
             >
               {showAllApps ? (
                 <>Show Less <ChevronUp className="h-4 w-4" /></>
