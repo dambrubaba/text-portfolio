@@ -1,0 +1,175 @@
+'use client';
+
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
+import { Mail, Github, Twitter, Instagram, ChevronDown, ChevronUp } from 'lucide-react';
+
+export default function Home() {
+  const [showAllApps, setShowAllApps] = useState(false);
+
+  const featuredApps = [
+    { name: 'Customise My Waitlist', url: 'https://customise-my-waitlist.vercel.app/' },
+    { name: 'Aum Meditation', url: 'https://aumkaram.vercel.app/' },
+    { name: 'Notion Page Loader', url: 'https://load-notion.vercel.app/' },
+    { name: 'HEIC to JPG Converter', url: 'https://llamacoder.together.ai/share/J7pR1' },
+  ];
+
+  const allApps = [
+    ...featuredApps,
+    { name: 'Image Resize Tool', url: 'https://llamacoder.together.ai/share/mcGa_' },
+    { name: 'To-Do App', url: 'https://llamacoder.together.ai/share/EntZB' },
+    { name: 'Pomodoro Timer', url: 'https://llamacoder.together.ai/share/7a0Hj' },
+    { name: 'Network Speed Monitor', url: 'https://llamacoder.together.ai/share/qrFvi' },
+    { name: 'Notes App', url: 'https://llamacoder.together.ai/share/bpOvD' },
+    { name: 'Vedic Numerology Calculator', url: 'https://llamacoder.together.ai/share/PAVEn' },
+    { name: 'Kundli Matching Tool', url: 'https://llamacoder.together.ai/share/3X7r7' },
+    { name: 'Strong Password Generator', url: 'https://llamacoder.together.ai/share/4eHy-' },
+  ];
+
+  const posts = [
+    {
+      title: 'Building Apps with No-Code Tools',
+      date: '2024-01-15',
+      slug: 'building-apps-with-no-code-tools',
+      excerpt: 'Explore how to create powerful applications without writing traditional code.',
+      keywords: ['no-code', 'development', 'tools'],
+    },
+    {
+      title: 'The Power of Free Development Tools',
+      date: '2024-01-10',
+      slug: 'power-of-free-development-tools',
+      excerpt: 'A comprehensive guide to the best free tools for modern app development.',
+      keywords: ['tools', 'development', 'free'],
+    },
+    {
+      title: 'Automating Your Workflow',
+      date: '2024-01-05',
+      slug: 'automating-your-workflow',
+      excerpt: 'Learn how to automate repetitive tasks and boost your productivity.',
+      keywords: ['automation', 'workflow', 'productivity'],
+    },
+  ];
+
+  const displayedApps = showAllApps ? allApps : featuredApps;
+
+  return (
+    <div className="flex justify-center">
+      <div className="container max-w-6xl py-10 px-4 sm:px-6 lg:px-8 mt-8">
+        <section className="space-y-6 mb-12 flex flex-col items-center text-center max-w-2xl mx-auto">
+          <div className="space-y-4">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl text-foreground">
+              Hi, I&apos;m <span className="name-highlight text-foreground">Damburudhar</span>
+            </h1>
+            <p className="text-xl text-muted-foreground">
+              A <span className="highlight-1">no-code</span> developer 
+              <span className="highlight-2"> passionate</span> about 
+              <span className="highlight-3"> building</span> 
+              <span className="highlight-4"> innovative</span> apps using free tools.
+            </p>
+          </div>
+
+          <div className="flex gap-4">
+            <Button variant="outline" size="icon" asChild>
+              <Link href="https://github.com/dambrubaba" target="_blank">
+                <Github className="h-4 w-4" />
+                <span className="sr-only">GitHub</span>
+              </Link>
+            </Button>
+            <Button variant="outline" size="icon" asChild>
+              <Link href="https://twitter.com/scionofshiv" target="_blank">
+                <Twitter className="h-4 w-4" />
+                <span className="sr-only">Twitter</span>
+              </Link>
+            </Button>
+            <Button variant="outline" size="icon" asChild>
+              <Link href="https://instagram.com/devtoolz" target="_blank">
+                <Instagram className="h-4 w-4" />
+                <span className="sr-only">Instagram</span>
+              </Link>
+            </Button>
+            <Button variant="outline" size="icon" asChild>
+              <Link href="mailto:dambrureddy321@gmail.com">
+                <Mail className="h-4 w-4" />
+                <span className="sr-only">Email</span>
+              </Link>
+            </Button>
+          </div>
+        </section>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <section className="space-y-6 text-center">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Apps</h2>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {displayedApps.map((app) => (
+                <Link 
+                  key={app.name}
+                  href={app.url}
+                  target="_blank"
+                  className="app-tag group text-foreground hover:text-primary"
+                >
+                  <span>{app.name}</span>
+                  <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                </Link>
+              ))}
+            </div>
+            <Button
+              variant="ghost"
+              onClick={() => setShowAllApps(!showAllApps)}
+              className="flex items-center gap-2 mx-auto text-foreground"
+            >
+              {showAllApps ? (
+                <>Show Less <ChevronUp className="h-4 w-4" /></>
+              ) : (
+                <>View All Apps <ChevronDown className="h-4 w-4" /></>
+              )}
+            </Button>
+          </section>
+
+          <section className="space-y-6">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Blog</h2>
+            <div className="grid gap-6">
+              {posts.map((post) => (
+                <Link 
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="block group"
+                >
+                  <Card className="transition-all duration-300 hover:shadow-md overflow-hidden">
+                    <CardHeader className="py-4">
+                      <CardTitle className="transition-colors group-hover:text-primary text-lg text-foreground">
+                        {post.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="py-2">
+                      <div className="space-y-3">
+                        <p className="text-xs text-muted-foreground">
+                          {new Date(post.date).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                        </p>
+                        <div className="transform-gpu transition-all duration-300 max-h-0 opacity-0 group-hover:max-h-[200px] group-hover:opacity-100">
+                          <p className="text-sm text-muted-foreground mb-3">{post.excerpt}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {post.keywords.map((keyword) => (
+                              <span key={keyword} className="app-tag text-xs text-foreground">
+                                {keyword}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+}
