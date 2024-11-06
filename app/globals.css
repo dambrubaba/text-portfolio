@@ -76,23 +76,27 @@
 
 @layer components {
   .highlight-1 {
-    @apply font-mono text-transparent bg-clip-text;
+    @apply text-transparent bg-clip-text;
     color: hsl(var(--highlight-1));
+    font-family: var(--font-sans);
   }
   
   .highlight-2 {
-    @apply font-mono text-transparent bg-clip-text;
+    @apply text-transparent bg-clip-text;
     color: hsl(var(--highlight-2));
+    font-family: var(--font-sans);
   }
   
   .highlight-3 {
-    @apply font-mono text-transparent bg-clip-text;
+    @apply text-transparent bg-clip-text;
     color: hsl(var(--highlight-3));
+    font-family: var(--font-sans);
   }
   
   .highlight-4 {
-    @apply font-mono text-transparent bg-clip-text;
+    @apply text-transparent bg-clip-text;
     color: hsl(var(--highlight-4));
+    font-family: var(--font-sans);
   }
 
   .name-highlight {
