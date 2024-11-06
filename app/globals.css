@@ -177,3 +177,373 @@
     }
   }
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.slideshow-container {
+  position: relative;
+  perspective: 1000px;
+}
+
+.slideshow-container:hover .navigation-buttons {
+  opacity: 1;
+}
+
+.navigation-buttons {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Add this if you want a subtle hover effect on the visit button */
+.visit-button-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.visit-button-wrapper:hover::after {
+  opacity: 1;
+}
+
+/* Add these styles to your existing globals.css */
+
+.carousel-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.slide-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  cursor: grab;
+}
+
+.slide-content:active {
+  cursor: grabbing;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.content-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white !important;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.nav-button.left {
+  left: 1rem;
+}
+
+.nav-button.right {
+  right: 1rem;
+}
+
+.dots-container {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: white;
+}
+
+/* Add these styles to your globals.css */
+
+.featured-projects {
+  @apply w-full py-8;
+}
+
+.projects-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  perspective: 1000px;
+}
+
+.project-card {
+  @apply relative rounded-xl overflow-hidden;
+  aspect-ratio: 16/9;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.project-card:hover {
+  transform: translateZ(20px);
+}
+
+.project-image-container {
+  @apply relative w-full h-full;
+  aspect-ratio: 16/9;
+}
+
+.project-image {
+  @apply object-cover transition-transform duration-500;
+  object-position: center;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.1);
+}
+
+.project-overlay {
+  @apply absolute inset-0 bg-background/90 backdrop-blur-sm;
+  @apply flex items-center justify-center p-4;
+  @apply opacity-0 transition-opacity duration-300;
+}
+
+.project-card:hover .project-overlay {
+  @apply opacity-100;
+}
+
+.project-content {
+  @apply flex flex-col items-center text-center space-y-2;
+  max-width: 90%;
+}
+
+.project-title {
+  @apply text-lg font-bold text-foreground;
+  line-height: 1.2;
+}
+
+.project-description {
+  @apply text-xs text-muted-foreground;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-tech {
+  @apply flex flex-wrap gap-1 justify-center;
+  margin-top: 0.5rem;
+}
+
+.tech-tag {
+  @apply px-1.5 py-0.5 text-[10px] rounded-full;
+  @apply bg-primary/10 text-primary;
+  @apply border border-primary/20;
+  line-height: 1;
+}
+
+.project-links {
+  @apply flex gap-1.5 mt-2;
+}
+
+.project-links a {
+  @apply text-[10px] py-0.5 px-2 font-medium;
+  height: 22px;
+  min-height: unset;
+}
+
+.project-links .w-4 {
+  @apply w-3 h-3 mr-1;
+}
+
+/* Add a subtle floating animation to cards */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.project-card {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Stagger the floating animation for each card */
+.project-card:nth-child(1) { animation-delay: 0s; }
+.project-card:nth-child(2) { animation-delay: 1.5s; }
+.project-card:nth-child(3) { animation-delay: 3s; }
+.project-card:nth-child(4) { animation-delay: 4.5s; }
+
+/* Replace the previous project-related styles with these new ones */
+
+.featured-projects-container {
+  @apply w-full py-8 flex flex-col items-center;
+}
+
+.showcase-navigation {
+  @apply flex items-center justify-between w-full max-w-3xl mx-auto;
+  perspective: 2000px;
+}
+
+.showcase-window {
+  @apply relative w-full mx-4;
+  aspect-ratio: 16/9;
+  height: auto;
+  max-height: 360px;
+}
+
+.showcase-card {
+  @apply absolute inset-0 rounded-xl overflow-hidden;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  aspect-ratio: 16/9;
+}
+
+.showcase-image-container {
+  @apply relative w-full h-full;
+  aspect-ratio: 16/9;
+}
+
+.showcase-image {
+  @apply object-cover object-center;
+}
+
+.showcase-overlay {
+  @apply absolute inset-0 bg-background/80 backdrop-blur-sm;
+  @apply opacity-0 transition-opacity duration-300;
+  @apply flex items-center justify-center;
+  z-index: 20;
+}
+
+.showcase-card:hover .showcase-overlay {
+  @apply opacity-100;
+}
+
+.showcase-content {
+  @apply flex flex-col items-center text-center space-y-2 p-4;
+  max-width: 90%;
+  z-index: 30;
+}
+
+.showcase-title {
+  @apply text-lg font-bold text-foreground;
+}
+
+.showcase-description {
+  @apply text-xs text-muted-foreground max-w-md;
+}
+
+.showcase-tech {
+  @apply flex flex-wrap gap-2 justify-center mt-2;
+}
+
+.tech-tag {
+  @apply px-2 py-0.5 text-xs rounded-full;
+  @apply bg-primary/10 text-primary;
+  @apply border border-primary/20;
+}
+
+.showcase-links {
+  @apply flex gap-3 mt-4;
+  z-index: 40;
+}
+
+.showcase-links a {
+  @apply text-xs py-1 px-3;
+  height: 28px;
+  position: relative;
+  z-index: 50;
+}
+
+.nav-button {
+  @apply bg-background/20 backdrop-blur-sm hover:bg-background/30;
+  @apply border border-border/50;
+  @apply transition-all duration-200;
+  z-index: 10;
+}
+
+.showcase-indicators {
+  @apply flex gap-2 mt-4 justify-center;
+}
+
+.indicator {
+  @apply w-2 h-2 rounded-full bg-primary/30 transition-all duration-300;
+  @apply hover:bg-primary/50;
+}
+
+.indicator.active {
+  @apply w-6 bg-primary;
+}
+
+/* Add smooth transitions for the showcase card */
+.showcase-card {
+  transition: transform 0.5s ease;
+}
+
+.showcase-card:hover {
+  transform: scale(1.02);
+}
+
+/* Optional: Add a subtle shadow effect */
+.showcase-card::after {
+  content: '';
+  @apply absolute inset-0 rounded-xl;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.showcase-card:hover::after {
+  opacity: 1;
+}
+
+/* Optional: Make the buttons more obviously interactive */
+.showcase-links a:hover {
+  @apply transform scale-105;
+  transition: transform 0.2s ease;
+}

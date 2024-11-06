@@ -1,102 +1,141 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Card } from '@/components/ui/card';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from './ui/button';
-
-const featuredApps = [
-  { 
-    name: 'Directory Boilerplate', 
-    url: 'https://directory-boilerplate-ai-agents.vercel.app/',
-    image: '/directory-boilerplate.png'  // You'll need to add these images
-  },
-  { 
-    name: 'ScreenPost', 
-    url: 'https://screenpost.vercel.app/',
-    image: '/screenpost.png'
-  },
-  { 
-    name: 'PrankPe', 
-    url: 'https://prankpe.online/',
-    image: '/prankpe.png'
-  },
-  { 
-    name: 'Aum Meditation', 
-    url: 'https://aumkaram.vercel.app/',
-    image: '/aum-meditation.png'
-  },
-];
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function AppSlideshow() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const apps = [
+    {
+      name: 'Directory Boilerplate',
+      url: 'https://directory-boilerplate-ai-agents.vercel.app/',
+      description: 'A modern directory template for AI agents and tools',
+      image: '/directory-boilerplate.png',
+      tech: ['Next.js', 'TypeScript', 'Tailwind'],
+      github: 'https://github.com/dambrubaba/directory-boilerplate'
+    },
+    {
+      name: 'ScreenPost',
+      url: 'https://screenpost.vercel.app/',
+      description: 'Create beautiful screenshots for social media',
+      image: '/screenpost.png',
+      tech: ['React', 'Lucide', 'Tailwind'],
+      github: 'https://github.com/dambrubaba/Snap-post'
+    },
+    {
+      name: 'PrankPe',
+      url: 'https://prankpe.online/',
+      description: 'Generate fun prank payment screenshots',
+      image: '/prankpe.png',
+      tech: ['Next.js', 'TypeScript', 'Shadcn UI'],
+      github: 'https://github.com/dambrubaba/prankpay'
+    },
+    {
+      name: 'Aum Meditation',
+      url: 'https://aumkaram.vercel.app/',
+      description: 'A peaceful meditation and mindfulness app',
+      image: '/aum-meditation.png',
+      tech: ['React', 'Next.js', 'Tailwind', 'Shadcn UI'],
+      github: 'https://github.com/dambrubaba/aum-meditation'
+    },
+  ];
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % apps.length);
+  }, [apps.length]);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + apps.length) % apps.length);
+  };
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % featuredApps.length);
-    }, 5000); // Change slide every 5 seconds
-
+    const timer = setInterval(handleNext, 6000);
     return () => clearInterval(timer);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % featuredApps.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + featuredApps.length) % featuredApps.length);
-  };
+  }, [handleNext]);
 
   return (
-    <div className="relative w-full aspect-video max-w-2xl mx-auto">
-      <Card className="overflow-hidden">
-        <Link href={featuredApps[currentSlide].url} target="_blank">
-          <div className="relative w-full aspect-video">
-            <Image
-              src={featuredApps[currentSlide].image}
-              alt={featuredApps[currentSlide].name}
-              fill
-              className="object-cover transition-transform duration-500"
-              priority
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-              <h3 className="text-white text-xl font-semibold">
-                {featuredApps[currentSlide].name}
-              </h3>
-            </div>
-          </div>
-        </Link>
-      </Card>
+    <div className="featured-projects-container">
+      <div className="showcase-navigation">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={handlePrevious}
+          className="nav-button"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
 
-      {/* Navigation Buttons */}
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
-        onClick={prevSlide}
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
-        onClick={nextSlide}
-      >
-        <ChevronRight className="h-4 w-4" />
-      </Button>
+        <div className="showcase-window">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="showcase-card"
+            >
+              <div className="showcase-image-container">
+                <Image
+                  src={apps[currentIndex].image}
+                  alt={apps[currentIndex].name}
+                  fill
+                  className="showcase-image"
+                  priority
+                />
+                <div className="showcase-overlay">
+                  <div className="showcase-content">
+                    <h3 className="showcase-title">{apps[currentIndex].name}</h3>
+                    <p className="showcase-description">{apps[currentIndex].description}</p>
+                    <div className="showcase-tech">
+                      {apps[currentIndex].tech.map((tech) => (
+                        <span key={tech} className="tech-tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="showcase-links">
+                      <Button variant="secondary" size="sm" asChild>
+                        <Link href={apps[currentIndex].url} target="_blank">
+                          <ExternalLink className="w-3 h-3 mr-1" />
+                          Visit Site
+                        </Link>
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href={apps[currentIndex].github} target="_blank">
+                          <Github className="w-3 h-3 mr-1" />
+                          Code
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        {featuredApps.map((_, index) => (
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={handleNext}
+          className="nav-button"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+
+      <div className="showcase-indicators">
+        {apps.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-all ${
-              index === currentSlide ? 'bg-white w-4' : 'bg-white/50'
-            }`}
-            onClick={() => setCurrentSlide(index)}
+            onClick={() => setCurrentIndex(index)}
+            className={`indicator ${index === currentIndex ? 'active' : ''}`}
           />
         ))}
       </div>
