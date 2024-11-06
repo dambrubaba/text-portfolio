@@ -73,10 +73,11 @@ export default function Home() {
               <span className="wave">👋</span> Hi, I&apos;m <span className={`name-highlight ${interBlack.className}`}>Damburudhar</span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              A <span className="highlight-1">no-code</span> developer 
+              A <span className="highlight-1">full-stack</span> developer 
               <span className="highlight-2"> passionate</span> about 
               <span className="highlight-3"> building</span> 
-              <span className="highlight-4"> useful</span> apps mostly using free tools. Very active on Twitter.
+              <span className="highlight-4"> useful</span> apps mostly using 
+              <span className="highlight-1"> no-code</span> tools and put them out for <span className="highlight-1">public use</span>. Check them out in the apps section. I&apos;m also building two <span className="highlight-2">SaaS</span> products in <span className="highlight-3">AI space</span> and will be launching them soon. Very active on <span className="highlight-4">Twitter</span>.
             </p>
           </div>
 
@@ -116,7 +117,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <section className="space-y-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground text-center">Featured Projects</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground text-center">Featured Apps</h2>
             <AppSlideshow />
             <Button
               variant="ghost"
