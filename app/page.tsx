@@ -4,20 +4,23 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import { Mail, Github, Twitter, Instagram, ChevronDown, ChevronUp } from 'lucide-react';
+import { Mail, Github, Twitter, Instagram, ChevronDown, ChevronUp, Coffee } from 'lucide-react';
 
 export default function Home() {
   const [showAllApps, setShowAllApps] = useState(false);
 
   const featuredApps = [
-    { name: 'Customise My Waitlist', url: 'https://customise-my-waitlist.vercel.app/' },
+    { name: 'Directory Boilerplate', url: 'https://directory-boilerplate-ai-agents.vercel.app/' },
+    { name: 'ScreenPost', url: 'https://screenpost.vercel.app/' },
+    { name: 'PrankPe', url: 'https://prankpe.online/' },
     { name: 'Aum Meditation', url: 'https://aumkaram.vercel.app/' },
-    { name: 'Notion Page Loader', url: 'https://load-notion.vercel.app/' },
-    { name: 'HEIC to JPG Converter', url: 'https://llamacoder.together.ai/share/J7pR1' },
   ];
 
   const allApps = [
     ...featuredApps,
+    { name: 'Notion Page Loader', url: 'https://load-notion.vercel.app/' },
+    { name: 'Customise My Waitlist', url: 'https://customise-my-waitlist.vercel.app/' },
+    { name: 'HEIC to JPG Converter', url: 'https://llamacoder.together.ai/share/J7pR1' },
     { name: 'Image Resize Tool', url: 'https://llamacoder.together.ai/share/mcGa_' },
     { name: 'To-Do App', url: 'https://llamacoder.together.ai/share/EntZB' },
     { name: 'Pomodoro Timer', url: 'https://llamacoder.together.ai/share/7a0Hj' },
@@ -93,6 +96,12 @@ export default function Home() {
               <Link href="mailto:dambrureddy321@gmail.com">
                 <Mail className="h-4 w-4" />
                 <span className="sr-only">Email</span>
+              </Link>
+            </Button>
+            <Button variant="outline" className="flex gap-2" asChild>
+              <Link href="https://www.buymeacoffee.com/damburudhar" target="_blank">
+                <Coffee className="h-4 w-4" />
+                <span>Buy me a coffee</span>
               </Link>
             </Button>
           </div>
