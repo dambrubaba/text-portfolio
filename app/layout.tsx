@@ -10,30 +10,7 @@ export const metadata: Metadata = {
   title: 'Damburudhar - No-Code Developer',
   description: 'Building innovative apps using free tools',
   icons: {
-    icon: [
-      {
-        url: '/favicon.ico',
-        sizes: '32x32',
-        type: 'image/x-icon',
-      },
-      {
-        url: '/icon.png',
-        sizes: '192x192',
-        type: 'image/png',
-      },
-      {
-        url: '/apple-icon.png',
-        sizes: '180x180',
-        type: 'image/png',
-      },
-    ],
-    apple: [
-      {
-        url: '/apple-icon.png',
-        sizes: '180x180',
-        type: 'image/png',
-      },
-    ],
+    icon: '/boy.png',
   },
 };
 

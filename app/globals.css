@@ -34,7 +34,7 @@
 
   .dark {
     --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
+    --foreground: 0 0% 100%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
@@ -93,7 +93,7 @@
 
   .name-highlight {
     @apply px-2 py-1 rounded-md font-mono;
-    @apply dark:bg-white dark:text-black bg-black text-white;
+    @apply bg-primary text-primary-foreground;
     @apply transition-colors duration-200;
   }
 
